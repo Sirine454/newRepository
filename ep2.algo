@@ -10,53 +10,60 @@ a1:=[3,1,7,9];
 a2:=[2,4,7,9,3];
 sum:=0
 FOR i FROM 0 TO length(a1) STEP 1  DO
-FOR j FROM 0 TO length(a2) STEP 2  DO
-THEN 
-IF a1[i]<>a2[i]
-   THEN
-      sum+=a1[i]
-END_IF
-IF a1[j]<>a2[j]
-   THEN
-      sum+=a2[j]
-
-END_IF
-write(sum)
-END_FOR
-//SOLUTION2 prob1
-ALGORITHM hach 
-VAR 
- htab1 : HASH_TABLE<INTEGER,INTEGER>;
- i,j:INTEGER;
- sum=1;
- BEGIN
- htab1.insert(0,3);
- htab1.insert(1,1);
- htab1.insert(2,7);
- htab1.insert(3,9);
-   Write(htab1);
- htab2.insert(0,2);
- htab2.insert(1,4);
- htab2.insert(2,7);
- htab2.insert(3,9);
-   Write(htab1);
-   FOR i FROM 0 TO length(htab1) STEP 1  DO
-   FOR j FROM 0 TO length(htab2) STEP 2  DO
-   
-   IF htab1[i]<>htab2[i]
+   FOR j FROM 0 TO length(a2) STEP 2  DO 
+      IF (a1[i]<>a2[j])
       THEN
-      sum+=htab1[i]
- 
-  END_IF
-  write(sum) 
-  
-IF htab1[j]<>htab2[j]
-THEN
-      sum+=htab2[j]
-   
-  END_IF
-  write(sum) 
-   END_FOR
+      sum:= sum+a1[i]
+      END_IF
+END_FOR
+END_FOR
+FOR i FROM 0 TO length(a2) STEP 1  DO
+   FOR j FROM 0 TO length(a1) STEP 2  DO 
+      IF (a2[i]<>a1[j])
+      THEN
+      sum:=sum+a2[i]
+
+      END_IF
+END_FOR
+END_FOR
+Write(sum);
+END
+
+//SOLUTION2 prob1
+ALGORITHM hash
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    a1,a2: ARRAY_OF INTEGER[50];
+    i,sum,count : INTEGER;
+    sum:=0
+BEGIN
+    FOR i FROM 0 TO a1.length STEP 1 DO
+        htab.insert(a[i],1);
+    END_FOR
+
+    FOR i FROM 0 TO a2.length STEP 1 DO
+        IF (htab.lookup(a2[i])= TRUE) THEN
+            count:= htab.get(a2[i]);
+            htab.insert(a2[i],count+1);
+        ELSE
+            htab.insert(a2[i],1);
+        END_IF
+    END_FOR
+    // loop the hash
+    FOR i FROM 0 TO a1.length STEP 1 DO
+        IF ( htab.get(a1[i]) = 1) THEN
+            sum := sum +a1[i];
+        END_IF 
+    END_FOR
+
+    FOR i FROM 0 TO a2.length STEP 1 DO
+        IF ( htab.get(a2[i]) = 1) THEN
+            sum := sum +a2[i];
+        END_IF 
+    END_FOR
+    
+    Write(sum);
+END
 
    //solution 1 prob2
 BEGIN
@@ -64,44 +71,58 @@ a1:=[3,1,7,9];
 a2:=[2,4,7,9];
 sum:=0
 FOR i FROM 0 TO length(a1) STEP 1  DO
-FOR j FROM 0 TO length(a2) STEP 2  DO
-THEN 
-IF a1[i]=a2[i]
-   THEN
-      sum+=a1[i]
-END_IFch
-IF a1[j]=a2[j]
-   THEN
-      sum+=a2[j]
-
-END_IF
-write(sum)
+   FOR j FROM 0 TO length(a2) STEP 2  DO 
+      IF (a1[i]=a2[j])
+      THEN
+      sum:= sum+a1[i]
+      END_IF
 END_FOR
+END_FOR
+FOR i FROM 0 TO length(a2) STEP 1  DO
+   FOR j FROM 0 TO length(a1) STEP 2  DO 
+      IF (a2[i]=a1[j])
+      THEN
+      sum:=sum+a2[i]
+
+      END_IF
+END_FOR
+END_FOR
+ Write(sum);
+END
 //solution 2 prob2
 BEGIN
- htab1.insert(0,3);
- htab1.insert(1,1);
- htab1.insert(2,7);
- htab1.insert(3,9);
-   Write(htab1);
- htab2.insert(0,2);
- htab2.insert(1,4);
- htab2.insert(2,7);
- htab2.insert(3,9);
-   Write(htab1);
-   FOR i FROM 0 TO length(htab1) STEP 1  DO
-   FOR j FROM 0 TO length(htab2) STEP 2  DO
-   
-   IF htab1[i]=htab2[i]
-      THEN
-      sum+=htab1[i]
- 
-  END_IF
-  write(sum) 
-IF htab1[j]=htab2[j]
-THEN
-      sum+=htab2[j]
-   
-  END_IF
-  write(sum) 
-   END_FOR
+ ALGORITHM hach
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    tab1,tab2: ARRAY_OF INTEGER[50];
+    i,sum,count : INTEGER;
+    sum:=0
+BEGIN
+    FOR i FROM 0 TO tab1.length STEP 1 DO
+        htab.insert(tab[i],1);
+    END_FOR
+
+    FOR i FROM 0 TO tab2.length STEP 1 DO
+        IF (htab.lookup(tab2[i])= TRUE) THEN
+            count:= htab.get(tab2[i]);
+            htab.insert(tab2[i],count+1);
+        ELSE
+            htab.insert(tab2[i],1);
+        END_IF
+    END_FOR
+    // loop the hash
+    FOR i FROM 0 TO tab1.length STEP 1 DO
+        IF ( htab.get(tab1[i]) not 1) THEN
+            sum := sum +tab1[i];
+        END_IF 
+    END_FOR
+
+    FOR i FROM 0 TO tab2.length STEP 1 DO
+        IF ( htab.get(tab2[i]) not 1) THEN
+            sum := sum +tab2[i];
+        END_IF 
+    END_FOR
+    
+    sum:=sum*2;
+    Write(sum);
+END
