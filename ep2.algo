@@ -29,7 +29,7 @@ END_FOR
 Write(sum);
 END
 
-//SOLUTION2 prob1
+//solution2 prob1
 ALGORITHM hash
 VAR
     htab : HASH_TABLE<INTEGER,INTEGER>;
@@ -37,11 +37,11 @@ VAR
     i,sum,count : INTEGER;
     sum:=0
 BEGIN
-    FOR i FROM 0 TO a1.length STEP 1 DO
-        htab.insert(a[i],1);
+    FOR i FROM 0 TO length-1(a1) STEP 1 DO
+        htab.insert(a1[i],1);
     END_FOR
 
-    FOR i FROM 0 TO a2.length STEP 1 DO
+    FOR i FROM 0 TO length-1(a2) STEP 1 DO
         IF (htab.lookup(a2[i])= TRUE) THEN
             count:= htab.get(a2[i]);
             htab.insert(a2[i],count+1);
@@ -50,13 +50,13 @@ BEGIN
         END_IF
     END_FOR
     // loop the hash
-    FOR i FROM 0 TO a1.length STEP 1 DO
+    FOR i FROM 0 TO a1.length-1 STEP 1 DO
         IF ( htab.get(a1[i]) = 1) THEN
             sum := sum +a1[i];
         END_IF 
     END_FOR
 
-    FOR i FROM 0 TO a2.length STEP 1 DO
+    FOR i FROM 0 TO a2.length-1 STEP 1 DO
         IF ( htab.get(a2[i]) = 1) THEN
             sum := sum +a2[i];
         END_IF 
@@ -94,32 +94,32 @@ BEGIN
  ALGORITHM hach
 VAR
     htab : HASH_TABLE<INTEGER,INTEGER>;
-    tab1,tab2: ARRAY_OF INTEGER[50];
+    a1,a2: ARRAY_OF INTEGER[50];
     i,sum,count : INTEGER;
     sum:=0
 BEGIN
-    FOR i FROM 0 TO tab1.length STEP 1 DO
-        htab.insert(tab[i],1);
+    FOR i FROM 0 TO length(a1)-1 STEP 1 DO
+        htab.insert(a1[i],1);
     END_FOR
 
-    FOR i FROM 0 TO tab2.length STEP 1 DO
-        IF (htab.lookup(tab2[i])= TRUE) THEN
-            count:= htab.get(tab2[i]);
-            htab.insert(tab2[i],count+1);
+    FOR i FROM 0 TO length(a2)-1 STEP 1 DO
+        IF (htab.lookup(a2[i])= TRUE) THEN
+            count:= htab.get(a2[i]);
+            htab.insert(a2[i],count+1);
         ELSE
-            htab.insert(tab2[i],1);
+            htab.insert(a2[i],1);
         END_IF
     END_FOR
     // loop the hash
-    FOR i FROM 0 TO tab1.length STEP 1 DO
-        IF ( htab.get(tab1[i]) not 1) THEN
-            sum := sum +tab1[i];
+    FOR i FROM 0 TO length(a1)-1 STEP 1 DO
+        IF ( htab.get(a1[i]) not 1) THEN
+            sum := sum +a1[i];
         END_IF 
     END_FOR
 
-    FOR i FROM 0 TO tab2.length STEP 1 DO
-        IF ( htab.get(tab2[i]) not 1) THEN
-            sum := sum +tab2[i];
+    FOR i FROM 0 TO length(a2)-1 STEP 1 DO
+        IF ( htab.get(a2[i]) not 1) THEN
+            sum := sum + a2[i];
         END_IF 
     END_FOR
     
