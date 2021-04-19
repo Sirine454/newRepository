@@ -8,25 +8,28 @@ sum:INTEGER;
 BEGIN
 a1:=[3,1,7,9];
 a2:=[2,4,7,9,3];
-sum:=0
-FOR i FROM 0 TO length(a1) STEP 1  DO
-   FOR j FROM 0 TO length(a2) STEP 2  DO 
-      IF (a1[i]<>a2[j])
-      THEN
-      sum:= sum+a1[i]
-      END_IF
-END_FOR
-END_FOR
-FOR i FROM 0 TO length(a2) STEP 1  DO
-   FOR j FROM 0 TO length(a1) STEP 2  DO 
-      IF (a2[i]<>a1[j])
-      THEN
-      sum:=sum+a2[i]
-
-      END_IF
-END_FOR
-END_FOR
-Write(sum);
+sum1:=0
+FOR i FROM 0 TO length(a1)-1 STEP 1  DO
+    j:=0
+    while (j<=length(a2)-1 && a1[i]<>a2[j])
+    j++
+     END_WHILE 
+  IF(j=a2.length) THEN
+  sum1:= sum1 +a1[i]
+  END IF 
+   END FOR   
+sum2:=0
+FOR i FROM 0 TO length(a2)-1 STEP 1  DO
+   i:=0
+    while (j<=length(a1)-1 && a1[i]<>a2[j])
+    i++
+     END_WHILE 
+  IF(i=a1.length) THEN
+  sum2:= sum2 +a2[i]
+  END IF 
+   END FOR   
+  IF(sum1<>sum2) THEN
+   Write(sum1);
 END
 
 //solution2 prob1
@@ -69,25 +72,28 @@ END
 BEGIN
 a1:=[3,1,7,9];
 a2:=[2,4,7,9];
-sum:=0
-FOR i FROM 0 TO length(a1) STEP 1  DO
-   FOR j FROM 0 TO length(a2) STEP 2  DO 
-      IF (a1[i]=a2[j])
-      THEN
-      sum:= sum+a1[i]
-      END_IF
-END_FOR
-END_FOR
-FOR i FROM 0 TO length(a2) STEP 1  DO
-   FOR j FROM 0 TO length(a1) STEP 2  DO 
-      IF (a2[i]=a1[j])
-      THEN
-      sum:=sum+a2[i]
-
-      END_IF
-END_FOR
-END_FOR
- Write(sum);
+sum1:=0
+FOR i FROM 0 TO length(a1)-1 STEP 1  DO
+    j:=0
+    while (j<=length(a2)-1 && a1[i]=a2[j])
+    j++
+     END_WHILE 
+  IF(j=a2.length) THEN
+  sum1:= sum1 +a1[i]
+  END IF 
+   END FOR   
+sum2:=0
+FOR i FROM 0 TO length(a2)-1 STEP 1  DO
+   i:=0
+    while (j<=length(a1)-1 && a1[i]=a2[j])
+    i++
+     END_WHILE 
+  IF(i=a1.length) THEN
+  sum2:= sum2 +a2[i]
+  END IF 
+   END FOR   
+  IF(sum1=sum2) THEN
+   Write(sum1);
 END
 //solution 2 prob2
 BEGIN
